@@ -1,6 +1,6 @@
 Edited nerdcommenter so that sexy comments in C follow 42 school coding style convention. <br \>
 You need to put let g:NERDSpaceDelims = 1 in your .vimrc. <br \>
-<leader>cs is the default binding for sexy comments. <br \>
+\<leader>cs is the default binding for sexy comments. <br \>
 Everything else if left unchanged. <br \>
 
 # NERD Commenter
