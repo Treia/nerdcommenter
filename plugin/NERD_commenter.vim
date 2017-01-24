@@ -93,7 +93,6 @@ let s:delimiterMap = {
     \ 'asterisk': { 'left': ';' },
     \ 'asy': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'atlas': { 'left': 'C', 'right': '$' },
-    \ 'augeas': { 'left': '(*', 'right': '*)' },
     \ 'autohotkey': { 'left': ';', 'leftAlt': '/*', 'rightAlt': '*/' },
     \ 'autoit': { 'left': ';' },
     \ 'ave': { 'left': "'" },
@@ -193,7 +192,6 @@ let s:delimiterMap = {
     \ 'gentoo-package-use': { 'left': '#' },
     \ 'gitcommit': { 'left': '#' },
     \ 'gitconfig': { 'left': ';' },
-    \ 'gitignore': { 'left': '#' },
     \ 'gitrebase': { 'left': '#' },
     \ 'gnuplot': { 'left': '#' },
     \ 'go': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' },
@@ -984,7 +982,7 @@ function s:CommentLinesSexy(topline, bottomline)
         " the lines down when we added the left delimiter
         call cursor(a:bottomline+1, 1)
         execute 'normal! o'
-        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . right
+        let theLine = repeat(' ', leftAlignIndx) . right
 
         " Make sure tabs are respected
         if !&expandtab
@@ -1010,7 +1008,7 @@ function s:CommentLinesSexy(topline, bottomline)
         endif
 
         " add the sexyComMarker
-        let theLine = repeat(' ', leftAlignIndx) . repeat(' ', strlen(left)-strlen(sexyComMarker)) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
+        let theLine = repeat(' ', leftAlignIndx) . sexyComMarkerSpaced . strpart(theLine, leftAlignIndx)
 
         if lineHasTabs
             let theLine = s:ConvertLeadingSpacesToTabs(theLine)
@@ -2148,7 +2146,7 @@ function s:GetSexyComMarker(space, esc)
         "if the filetype has c style comments then use standard c sexy
         "comments
         if s:HasCStyleComments()
-            let sexyComMarker = '*'
+            let sexyComMarker = '**'
         else
             "find a comment marker by getting the longest available left delimiter
             "(that has a corresponding right delimiter) and taking the last char
